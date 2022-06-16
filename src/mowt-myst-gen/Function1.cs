@@ -34,8 +34,8 @@ namespace mowt_myst_gen
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            var file = Path.Combine(context.FunctionDirectory, "index.html");
-            string html = await GetHtml(file);
+          
+            string html = await GetHtml();
             var stubble = new StubbleBuilder().Build();
             var output = await stubble.RenderAsync(html, new { loc = Data.GetLocation(), mon = Data.GetMonster(), typ = Data.GetMonsterType(), mot = Data.GetMotivation() });
             var response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -44,9 +44,17 @@ namespace mowt_myst_gen
             return response;
         }
 
-        private static async Task<string> GetHtml(string file)
+        private static async Task<string> GetHtml()
         {
-            return await File.ReadAllTextAsync(file);
+            var fileNs = typeof(Function1).Namespace;
+
+            using var stream = typeof(Function1).Assembly.GetManifestResourceStream(fileNs + ".index.html");
+            if (stream is null) return string.Empty;
+            using var sr = new StreamReader(stream);
+
+            var html = await sr.ReadToEndAsync();
+
+            return html;
         }
         private static string GetMessage() => $"En el/la {Data.GetLocation()} se encuentra {Data.GetMonster()}, con el aspecto {Data.GetMonsterType()} motivada[o] {Data.GetMotivation()}";
 
