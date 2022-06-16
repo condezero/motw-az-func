@@ -34,7 +34,7 @@ namespace mowt_myst_gen
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            var file = Path.Combine(context.FunctionAppDirectory, "test.html");
+            var file = Path.Combine(context.FunctionDirectory, "index.html");
             string html = await GetHtml(file);
             var stubble = new StubbleBuilder().Build();
             var output = await stubble.RenderAsync(html, new { loc = Data.GetLocation(), mon = Data.GetMonster(), typ = Data.GetMonsterType(), mot = Data.GetMotivation() });
