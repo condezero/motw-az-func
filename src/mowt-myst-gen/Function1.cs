@@ -35,7 +35,14 @@ namespace mowt_myst_gen
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
           
-            string html = await GetHtml();
+            string html = await GetHtml(log);
+            if (string.IsNullOrEmpty(html))
+            {
+                log.LogError("Cannot find the html file");
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+              
+
+            }
             var stubble = new StubbleBuilder().Build();
             var output = await stubble.RenderAsync(html, new { loc = Data.GetLocation(), mon = Data.GetMonster(), typ = Data.GetMonsterType(), mot = Data.GetMotivation() });
             var response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -44,12 +51,15 @@ namespace mowt_myst_gen
             return response;
         }
 
-        private static async Task<string> GetHtml()
+        private static async Task<string> GetHtml(ILogger log)
         {
             var fileNs = typeof(Function1).Namespace;
-
+            log.LogInformation($"Namespace: {fileNs}");
             using var stream = typeof(Function1).Assembly.GetManifestResourceStream(fileNs + ".index.html");
-            if (stream is null) return string.Empty;
+            if (stream is null)
+            {
+                return string.Empty;
+            }
             using var sr = new StreamReader(stream);
 
             var html = await sr.ReadToEndAsync();
