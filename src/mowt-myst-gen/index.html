@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Monster of the Week</title>
+    <style>
+        .header {
+            position: relative;
+            float: left;
+            left: 0.00%;
+            width: 100.00%;
+            margin-top: 10px;
+
+        }
+
+        .wrapper {
+            position: relative;
+            float: left;
+            left: 0.00%;
+            width: 100.00%;
+
+        }
+
+        .left1 {
+            position: relative;
+            float: left;
+            left: 1.50%;
+            width: 25.00%;
+
+        }
+
+        .left2 {
+            position: relative;
+            float: left;
+            left: 1.50%;
+            width: 25.00%;
+   
+        }
+        .left3 {
+            position: relative;
+            float: left;
+            left: 1.50%;
+            width: 25.00%;
+
+
+        }
+        .right {
+            position: relative;
+            float: right;
+            right: 1.50%;
+            width: 25.00%;
+
+        }
+
+        .footer {
+            position: relative;
+            float: left;
+            left: 0.00%;
+            width: 100.00%;
+
+        }
+
+        body {
+            border-width: 0px;
+            padding: 0px;
+            margin: 0px;
+            font-size: 90%;
+            background-color:black;
+     
+        }
+        .product-image {
+            background: none;
+            border: none;
+            text-align: center;
+        }
+        #content {
+            margin: 0;
+            width: 960px;
+            overflow: hidden;
+        }
+        #main {
+            width: 960px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="header">
+            <div class="product-image">
+                <img alt="Fate Core" src="https://www.evilhat.com/home/wp-content/uploads/2014/10/MOTW-Page-Header.jpg">
+            </div>
+        </div>
+        <div id="content" class="glass">
+
+            <div class="wrapper">
+                <div class="left1">
+                    <h3 style="font-family:'Courier New'">
+                        Localización
+                    </h3>
+                </div>
+                <div class="left2">
+                    <h3 style="font-family:'Courier New'">Monstruo</h3>
+                </div>
+                <div class="left3">
+                    <h3 style="font-family:'Courier New'">Tipo</h3>
+                </div>
+                <div class="right">
+                    <h3 style="font-family:'Courier New'">Motivación</h3>
+                </div>
+            </div>
+            <div class="entry-info"></div>
+            <div class="wrapper">
+                <div class="left1" style="font-family:'Courier New'">
+                    {{loc}}
+                </div>
+                <div class="left2" style="font-family:'Courier New'">
+                    {{mon}}
+                </div>
+                <div class="left3" style="font-family:'Courier New'">
+                    {{typ}}
+                </div>
+                <div class="right" style="font-family:'Courier New'">
+                    {{mot}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
